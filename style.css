@@ -28,7 +28,9 @@ body {
 .container {
   width: 100%;
   max-width: 420px;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* TEXTO DE AYUDA */
@@ -47,6 +49,8 @@ body {
   border-radius: 12px;
   padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 360px;
+  margin: 0 auto;
 }
 
 .letter-content p {
@@ -71,19 +75,29 @@ body {
 ====================== */
 
 .wallet {
-  background-color: transparent;
-  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.wallet-wrapper {
+  position: relative;
+  width: 360px;
+  display: flex;
+  justify-content: center;
 }
 
 .wallet-texture {
-  background-color: #e8d6c8; /* nude Guess */
+  position: relative;
+  background-color: #e8d6c8;
   border-radius: 18px;
-  padding: 60px 20px 40px;
+  padding: 60px 20px 120px;
+  width: 100%;
   text-align: center;
+  z-index: 2;
+
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 
-  /* textura tipo piel */
   background-image: repeating-linear-gradient(
     45deg,
     rgba(255, 255, 255, 0.04),
@@ -91,6 +105,16 @@ body {
     rgba(0, 0, 0, 0.02) 4px,
     rgba(0, 0, 0, 0.02) 6px
   );
+}
+.wallet-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(8px, 10px);
+  background-color: #d6c1ae;
+  border-radius: 18px;
+  z-index: 1;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
 }
 
 /* LOGO GUESS */
@@ -126,13 +150,6 @@ body {
    SOLAPA FRONTAL (RECTA)
 ====================== */
 
-.wallet-texture {
-  position: relative;
-  padding-bottom: 120px; /* espacio para la solapa */
-  position: relative;
-  z-index: 2;
-}
-
 /* solapa */
 .wallet-flap {
   position: absolute;
@@ -166,25 +183,4 @@ body {
 
 .wallet-flap .open-btn:active {
   transform: scale(0.96);
-}
-/* ======================
-   CUERPO DE CARTERA (PROFUNDIDAD)
-====================== */
-
-.wallet {
-  position: relative;
-}
-
-/* capa trasera (espesor) */
-.wallet::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: 8px;
-  width: 100%;
-  height: 100%;
-  background-color: #d6c1ae; /* ligeramente más oscuro */
-  border-radius: 18px;
-  z-index: -1;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
