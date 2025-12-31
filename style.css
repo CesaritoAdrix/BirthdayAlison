@@ -31,44 +31,6 @@ body {
   padding: 20px;
 }
 
-/* ======================
-   CARTA CERRADA
-====================== */
-.envelope {
-  background-color: var(--pink-soft);
-  border-radius: 12px;
-  padding: 60px 20px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.envelope-body {
-  position: relative;
-  width: 100%;
-  height: 160px;
-  background-color: #ffffff;
-  border-radius: 8px;
-}
-
-/* SELLO */
-.seal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--pink-accent);
-  color: white;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: bold;
-}
-
 /* TEXTO DE AYUDA */
 .hint {
   margin-top: 15px;
@@ -83,7 +45,7 @@ body {
 .letter {
   background-color: var(--paper-color);
   border-radius: 12px;
-  padding: 30px 25px;
+  padding: 35px 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -99,11 +61,130 @@ body {
   display: none;
 }
 
-/* OPCION ELEGANTE TIPO GUESS */
-.envelope {
-  transition: transform 0.3s ease;
+/* FIRMA */
+.letter-content p br:last-of-type {
+  margin-bottom: 10px;
 }
 
-.envelope:active {
-  transform: scale(0.97);
+/* ======================
+   PORTADA TIPO CARTERA
+====================== */
+
+.wallet {
+  background-color: transparent;
+  padding: 20px;
+}
+
+.wallet-texture {
+  background-color: #e8d6c8; /* nude Guess */
+  border-radius: 18px;
+  padding: 60px 20px 40px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+
+  /* textura tipo piel */
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.04) 2px,
+    rgba(0, 0, 0, 0.02) 4px,
+    rgba(0, 0, 0, 0.02) 6px
+  );
+}
+
+/* LOGO GUESS */
+.wallet-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  margin-bottom: 50px;
+  color: #c9a14a; /* dorado GUESS */
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* BOTÓN ABRIR */
+.open-btn {
+  background-color: #bfa58a; /* tono cuero */
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.open-btn:active {
+  transform: scale(0.96);
+}
+
+/* ======================
+   SOLAPA FRONTAL (RECTA)
+====================== */
+
+.wallet-texture {
+  position: relative;
+  padding-bottom: 120px; /* espacio para la solapa */
+  position: relative;
+  z-index: 2;
+}
+
+/* solapa */
+.wallet-flap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 110px;
+  background-color: #e2cfbf; /* mismo tono, un poco más oscuro */
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0 0 18px 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* botón integrado */
+.wallet-flap .open-btn {
+  background-color: #bfa58a;
+  color: #ffffff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 30px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.wallet-flap .open-btn:active {
+  transform: scale(0.96);
+}
+/* ======================
+   CUERPO DE CARTERA (PROFUNDIDAD)
+====================== */
+
+.wallet {
+  position: relative;
+}
+
+/* capa trasera (espesor) */
+.wallet::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: #d6c1ae; /* ligeramente más oscuro */
+  border-radius: 18px;
+  z-index: -1;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
