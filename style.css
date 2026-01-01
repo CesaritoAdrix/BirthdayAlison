@@ -1,11 +1,12 @@
-/* RESET BÁSICO */
+/* ======================
+   RESET Y VARIABLES
+====================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* VARIABLES DE COLOR (estilo Guess rosita) */
 :root {
   --pink-bg: #f6d6df;
   --pink-soft: #fdecef;
@@ -14,7 +15,9 @@
   --paper-color: #fffaf8;
 }
 
-/* BODY */
+/* ======================
+   BODY Y CONTENEDOR
+====================== */
 body {
   font-family: "Playfair Display", serif;
   background-color: var(--pink-bg);
@@ -24,7 +27,6 @@ body {
   align-items: center;
 }
 
-/* CONTENEDOR */
 .container {
   width: 100%;
   max-width: 420px;
@@ -33,24 +35,63 @@ body {
   align-items: center;
 }
 
-/* TEXTO DE AYUDA */
-.hint {
-  margin-top: 15px;
-  font-size: 14px;
-  color: var(--text-color);
-  opacity: 0.8;
-}
-
 /* ======================
-   CARTA ABIERTA
+   CARTA (MEJORADA)
 ====================== */
 .letter {
+  position: relative;
   background-color: var(--paper-color);
-  border-radius: 12px;
-  padding: 35px 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  padding: 3rem 2.5rem;
   max-width: 360px;
   margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  outline: 1px solid rgba(0, 0, 0, 0.05);
+  outline-offset: -10px;
+
+  /* sombra premium */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.15);
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05), 0 20px 40px rgba(0, 0, 0, 0.25),
+    0 5px 15px rgba(0, 0, 0, 0.15);
+
+  /* textura papel */
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.015),
+      rgba(0, 0, 0, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* borde interior sutil */
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+}
+
+.letter.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter.hide {
+  opacity: 0;
+  transform: translateY(25px);
 }
 
 .letter-content p {
@@ -60,30 +101,43 @@ body {
   color: var(--text-color);
 }
 
-/* OCULTAR */
-.hidden {
-  display: none;
-}
-
-/* FIRMA */
-.letter-content p br:last-of-type {
-  margin-bottom: 10px;
-}
-
 /* ======================
-   PORTADA TIPO CARTERA
+   CARTERA
 ====================== */
-
 .wallet {
   width: 100%;
   display: flex;
   justify-content: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+.wallet.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wallet.hide {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 .wallet-wrapper {
   position: relative;
   width: 360px;
   display: flex;
   justify-content: center;
+}
+
+/* capa trasera (profundidad) */
+.wallet-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(8px, 10px);
+  background-color: #d6c1ae;
+  border-radius: 18px;
+  z-index: 1;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
 }
 
 .wallet-texture {
@@ -106,58 +160,28 @@ body {
     rgba(0, 0, 0, 0.02) 6px
   );
 }
-.wallet-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translate(8px, 10px);
-  background-color: #d6c1ae;
-  border-radius: 18px;
-  z-index: 1;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.22);
-}
 
-/* LOGO GUESS */
+/* LOGO */
 .wallet-logo {
-  font-family: "Playfair Display", serif;
   font-size: 28px;
   letter-spacing: 4px;
   margin-bottom: 50px;
-  color: #c9a14a; /* dorado GUESS */
+  color: #c9a14a;
   display: flex;
   justify-content: center;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
 }
 
-/* BOTÓN ABRIR */
-.open-btn {
-  background-color: #bfa58a; /* tono cuero */
-  color: #ffffff;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.open-btn:active {
-  transform: scale(0.96);
-}
-
 /* ======================
-   SOLAPA FRONTAL (RECTA)
+   SOLAPA
 ====================== */
-
-/* solapa */
 .wallet-flap {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 110px;
-  background-color: #e2cfbf; /* mismo tono, un poco más oscuro */
+  background-color: #e2cfbf;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0 0 18px 18px;
 
@@ -168,88 +192,25 @@ body {
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4);
 }
 
-/* botón integrado */
-.wallet-flap .open-btn {
+/* ======================
+   BOTONES
+====================== */
+.open-btn {
   background-color: #bfa58a;
   color: #ffffff;
   border: none;
-  padding: 12px 36px;
+  padding: 10px 26px;
   border-radius: 30px;
   font-size: 13px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   cursor: pointer;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-.wallet-flap .open-btn:active {
+.open-btn:active {
   transform: scale(0.96);
 }
 
-
-/* ======================
-   ANIMACIONES APERTURA
-====================== */
-
-/* estado inicial */
-.wallet {
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-.letter {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-/* estado abierto */
-.container.open .wallet {
-  transform: translateY(80px);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.container.open .letter {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== ANIMACIONES ===== */
-
-/* estado inicial */
-.wallet {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.wallet.hide {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* carta animada */
-.letter {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.letter.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* salida de la carta */
-.letter.hide {
-  opacity: 0;
-  transform: translateY(25px);
-}
-
-/* entrada de la cartera */
-.wallet.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* botón discreto para la carta */
 .back-btn {
   margin-top: 30px;
   padding: 8px 22px;
@@ -257,11 +218,17 @@ body {
   letter-spacing: 1px;
   background-color: transparent;
   color: #bfa58a;
-  box-shadow: none;
   border: 1px solid #bfa58a;
 }
 
 .back-btn:hover {
   background-color: #bfa58a;
   color: white;
+}
+
+/* ======================
+   UTILIDADES
+====================== */
+.hidden {
+  display: none;
 }
