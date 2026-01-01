@@ -184,3 +184,31 @@ body {
 .wallet-flap .open-btn:active {
   transform: scale(0.96);
 }
+
+
+/* ======================
+   ANIMACIONES APERTURA
+====================== */
+
+/* estado inicial */
+.wallet {
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.letter {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* estado abierto */
+.container.open .wallet {
+  transform: translateY(80px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.container.open .letter {
+  opacity: 1;
+  transform: translateY(0);
+}
