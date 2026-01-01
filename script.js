@@ -1,13 +1,19 @@
 const openBtn = document.querySelector(".open-btn");
-const container = document.querySelector(".container");
 const wallet = document.getElementById("envelope");
 const letter = document.getElementById("letter");
 
 openBtn.addEventListener("click", () => {
-  container.classList.add("open");
+  // animar cartera
+  wallet.classList.add("hide");
 
+  // después de que se oculta
   setTimeout(() => {
     wallet.style.display = "none";
     letter.classList.remove("hidden");
-  }, 400);
+
+    // forzar reflow para que la animación funcione
+    void letter.offsetWidth;
+
+    letter.classList.add("show");
+  }, 400); // coincide con transición de wallet
 });
