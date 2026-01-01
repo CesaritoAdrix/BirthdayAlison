@@ -15,6 +15,15 @@
   --paper-color: #fffaf8;
 }
 
+/* FORZAR MODO CLARO (evitar modo oscuro del sistema) */
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background-color: var(--pink-bg);
+}
+
 /* ======================
    BODY Y CONTENEDOR
 ====================== */
