@@ -236,3 +236,32 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* salida de la carta */
+.letter.hide {
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+/* entrada de la cartera */
+.wallet.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* botón discreto para la carta */
+.back-btn {
+  margin-top: 30px;
+  padding: 8px 22px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  background-color: transparent;
+  color: #bfa58a;
+  box-shadow: none;
+  border: 1px solid #bfa58a;
+}
+
+.back-btn:hover {
+  background-color: #bfa58a;
+  color: white;
+}
